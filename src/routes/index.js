@@ -7,5 +7,6 @@ router.post("/quotes", quoteController.createQuote);
 router.get("/quotes", quoteController.getAllQuotes);
 router.get("/quotes/:id", quoteController.getQuoteById);
 router.patch("/quotes/:id", quoteController.updateQuote);
+router.delete("/quotes/:id", quoteController.deleteQuote);
 
 module.exports = router;

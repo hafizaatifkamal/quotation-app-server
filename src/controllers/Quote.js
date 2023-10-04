@@ -77,3 +77,24 @@ exports.updateQuote = async (req, res) => {
     res.status(500).send({ code: 500, message: error.message, error: error });
   }
 };
+
+exports.deleteQuote = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedQuote = await Quote.findByIdAndDelete(id);
+
+    if (!deletedQuote) {
+      return res.status(404).send({
+        code: 404,
+        message: "Quote not found",
+        error: `Result not found to be deleted for ${id}`,
+      });
+    }
+
+    res
+      .status(200)
+      .send({ code: 200, message: "Quote deleted!", data: deletedQuote });
+  } catch (error) {
+    res.status(500).send({ code: 500, message: error.message, error: error });
+  }
+};
